@@ -1,19 +1,47 @@
 <template>
-  <div class="home">
+  <div class="container">
+    <router-link to="/">Beranda</router-link>
+    <router-link to="/about">Tentang Kami</router-link>
     <h1>Selamat datang di halaman Beranda!</h1>
     <p>Ini adalah halaman Beranda aplikasi kami.</p>
+    <div class="list-data">
+      <ul v-for="item in dataList.products" :key="item.id">
+        <li>{{ item.id }}</li>
+        <li>{{ item.title }}</li>
+        <li>{{ item.description }}</li>
+        <li>{{ item.price }}</li>
+      </ul>
+    </div>
+    <!-- <div class="container">
+      <iframe src="https://iik.ac.id/?gclid=CjwKCAjwsKqoBhBPEiwALrrqiM_z8NgionUOCLdXMCMF8DV3CM9zxB1W2eizZvsvO9PZ7L3WrX9HHRoCc_YQAvD_BwE"></iframe>
+    </div> -->
   </div>
 </template>
 
 <script>
-export default {
-  name: 'HomePage'
-}
+  import axios from 'axios';
+  export default {
+    name: 'HomePage',
+    data() {
+      return {
+        dataList: [], // Untuk menyimpan data dari API
+      };
+    },
+    created() {
+      // Ganti URL_API dengan URL API yang sesuai
+      axios.get('https://dummyjson.com/products')
+        .then(response => {
+          this.dataList = response.data; // Menyimpan data dari API ke variabel dataList
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+    },
+  }
 </script>
 
 <style scoped lang="scss">
-/* Gaya khusus untuk komponen Home */
-.home {
+  /* Gaya khusus untuk komponen Home */
   h1 {
     color: aqua;
   }
@@ -21,5 +49,40 @@ export default {
   p {
     color: red;
   }
-}
-</style>
+
+  .container {
+    background: #ebebeb;
+  }
+
+  .list-data {
+    ul {
+      list-style-type: none;
+
+      li {
+        text-align: left;
+      }
+    }
+  }
+</style> <!-- main -->
+
+<style scoped lang="scss">
+  /* Style untuk iframe agar tetap berukuran layar mobile */
+  iframe {
+    width: 100%;
+    max-width: 400px;
+    /* Sesuaikan dengan lebar layar yang Anda inginkan */
+    height: 100vh;
+    display: block;
+    margin: 0 auto;
+    /* Ini akan menempatkan iframe di tengah horisontal */
+  }
+
+  /* Style untuk kontainer yang mengatur posisi vertical di tengah */
+  .halaman {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    /* Menggunakan tinggi 100% dari viewport */
+  }
+</style> <!-- iframe -->

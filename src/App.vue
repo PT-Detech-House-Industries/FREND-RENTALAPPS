@@ -1,7 +1,5 @@
 <template>
   <div id="app">
-    <router-link to="/">Beranda</router-link>
-    <router-link to="/about">Tentang Kami</router-link>
     <router-view></router-view>
     <!-- <img alt="Vue logo" src="./assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/> -->
@@ -26,6 +24,10 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  /* margin-top: 60px; */
+  max-width: 480px;
+  margin: auto;
+  min-height: 100vh;
+  padding-bottom: 1px;
 }
 </style>
