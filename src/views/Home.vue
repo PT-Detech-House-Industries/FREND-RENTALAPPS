@@ -1,16 +1,17 @@
 <template>
   <div class="container">
-    <router-link to="/">Beranda</router-link>
-    <router-link to="/about">Tentang Kami</router-link>
     <h1>Selamat datang di halaman Beranda!</h1>
     <p>Ini adalah halaman Beranda aplikasi kami.</p>
-    <div class="list-data">
-      <ul v-for="item in dataList.products" :key="item.id">
-        <li>{{ item.id }}</li>
-        <li>{{ item.title }}</li>
-        <li>{{ item.description }}</li>
-        <li>{{ item.price }}</li>
-      </ul>
+    <div class="card">
+      <img :src="loadingImage" v-if="loading" />
+      <div class="list-data" v-else>
+        <ul v-for="item in dataList.products" :key="item.id">
+          <li>{{ item.id }}</li>
+          <li>{{ item.title }}</li>
+          <li>{{ item.description }}</li>
+          <li>{{ item.price }}</li>
+        </ul>
+      </div>
     </div>
     <!-- <div class="container">
       <iframe src="https://iik.ac.id/?gclid=CjwKCAjwsKqoBhBPEiwALrrqiM_z8NgionUOCLdXMCMF8DV3CM9zxB1W2eizZvsvO9PZ7L3WrX9HHRoCc_YQAvD_BwE"></iframe>
@@ -25,19 +26,30 @@
     data() {
       return {
         dataList: [], // Untuk menyimpan data dari API
+        loading: true,
+        stats: {},
+        loadingImage: require('../assets/logo.png')
       };
+    },
+    methods: { // Perbaikan penulisan methods
+      async getData() {
+        try {
+          // Menambahkan penundaan selama 2 detik (2000 milidetik)
+          setTimeout(async () => {
+            const response = await axios.get('https://dummyjson.com/products');
+            this.dataList = response.data; // Menyimpan data dari API ke variabel dataList
+            this.loading = false; // Set loading menjadi false setelah data diterima
+          }, 1500); // Penundaan selama 2 detik
+        } catch (error) {
+          console.error('Error:', error);
+        }
+      }
     },
     created() {
       // Ganti URL_API dengan URL API yang sesuai
-      axios.get('https://dummyjson.com/products')
-        .then(response => {
-          this.dataList = response.data; // Menyimpan data dari API ke variabel dataList
-        })
-        .catch(error => {
-          console.error('Error:', error);
-        });
-    },
-  }
+      this.getData(); // Panggil metode getData untuk mengambil data
+    }
+  };
 </script>
 
 <style scoped lang="scss">
@@ -52,6 +64,7 @@
 
   .container {
     background: #ebebeb;
+    min-height: 100vh;
   }
 
   .list-data {

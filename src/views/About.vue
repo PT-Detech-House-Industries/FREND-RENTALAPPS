@@ -1,7 +1,5 @@
 <template>
   <div class="container">
-    <router-link to="/">Beranda</router-link>
-    <router-link to="/about">Tentang Kami</router-link>
     <h1>Tentang Kami</h1>
     <p>Kami adalah perusahaan yang luar biasa.</p>
     <!-- <div class="container">
