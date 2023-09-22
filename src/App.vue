@@ -1,22 +1,25 @@
 <template>
   <div id="app">
-    <Menu></Menu> <!-- Gunakan komponen Menu -->
+    <TopMenu></TopMenu>
     <router-view></router-view>
     <!-- <img alt="Vue logo" src="./assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/> -->
+    <BottomMenu></BottomMenu>
   </div>
 </template>
 
 <script>
 // import HelloWorld from './components/HelloWorld.vue'
-import Menu from './components/Menu.vue';
+import BottomMenu from './components/TopMenu.vue';
+import TopMenu from './components/BottomMenu.vue';
   
 export default {
 
   name: 'App',
   components: {
     // HelloWorld
-    Menu,
+    TopMenu,
+    BottomMenu,
   }
 }
 </script>
@@ -28,11 +31,11 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  /* margin-top: 60px; */
   max-width: 480px;
   margin: auto;
   min-height: 100vh;
   padding-bottom: 1px;
+  margin-top: 0;
 }
 
 /* Media query untuk perangkat mobile */

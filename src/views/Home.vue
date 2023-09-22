@@ -1,7 +1,9 @@
 <template>
   <div class="container">
-    <h1>Selamat datang di halaman Beranda!</h1>
-    <p>Ini adalah halaman Beranda aplikasi kami.</p>
+    <div class="title">
+      <h1>Selamat datang di halaman Beranda!</h1>
+      <p>Ini adalah halaman Beranda aplikasi kami.</p>
+    </div>
     <div class="card">
       <img :src="loadingImage" v-if="loading" />
       <div class="list-data" v-else>
@@ -54,17 +56,13 @@
 
 <style scoped lang="scss">
   /* Gaya khusus untuk komponen Home */
-  h1 {
-    color: aqua;
-  }
-
-  p {
-    color: red;
-  }
-
   .container {
     background: #ebebeb;
     min-height: 100vh;
+  }
+
+  .title {
+    padding-top: 75px;
   }
 
   .list-data {

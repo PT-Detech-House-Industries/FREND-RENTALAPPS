@@ -1,7 +1,9 @@
 <template>
   <div class="container">
-    <h1>Tentang Kami</h1>
-    <p>Kami adalah perusahaan yang luar biasa.</p>
+    <div class="title">
+      <h1>Tentang Kami</h1>
+      <p>Kami adalah perusahaan yang luar biasa.</p>
+    </div>
     <!-- <div class="container">
       <iframe src="https://iik.ac.id/?gclid=CjwKCAjwsKqoBhBPEiwALrrqiM_z8NgionUOCLdXMCMF8DV3CM9zxB1W2eizZvsvO9PZ7L3WrX9HHRoCc_YQAvD_BwE"></iframe>
     </div> -->
@@ -17,12 +19,12 @@ export default {
 <style scoped lang="scss">
   /* Gaya khusus untuk komponen Home */
   .container {
-    max-width: 480px;
-    margin: auto;
     background: #ebebeb;
     min-height: 100vh;
-    padding-bottom: 1px;
-    padding: 0;
+  }
+
+  .title {
+    padding-top: 75px;
   }
 
   .home {
