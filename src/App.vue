@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <TopMenu></TopMenu>
     <router-view></router-view>
     <!-- <img alt="Vue logo" src="./assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/> -->
@@ -10,25 +9,31 @@
 
 <script>
 // import HelloWorld from './components/HelloWorld.vue'
-import BottomMenu from './components/TopMenu.vue';
-import TopMenu from './components/BottomMenu.vue';
+import BottomMenu from './components/BottomMenu.vue';
   
 export default {
 
   name: 'App',
   components: {
     // HelloWorld
-    TopMenu,
     BottomMenu,
   }
 }
 </script>
 
 <style>
+
+@font-face {
+  font-family: 'PlusJakartaSans';
+  src: url('@/assets/fonts/plus-jakarta-sans/PlusJakartaSans-VariableFont_wght.ttf') format('truetype');
+  /* Tambahkan format lain jika diperlukan */
+}
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  /* font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: grayscale; */
+  font-family: 'PlusJakartaSans', sans-serif;
   text-align: center;
   color: #2c3e50;
   max-width: 480px;

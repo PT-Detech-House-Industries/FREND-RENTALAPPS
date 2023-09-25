@@ -1,11 +1,12 @@
 <template>
   <div class="container">
+    <TopMenu></TopMenu>
     <div class="title">
       <h1>Selamat datang di halaman Beranda!</h1>
       <p>Ini adalah halaman Beranda aplikasi kami.</p>
     </div>
     <div class="card">
-      <img :src="loadingImage" v-if="loading" />
+      <img class="load-data" :src="loadingImage" v-if="loading" />
       <div class="list-data" v-else>
         <ul v-for="item in dataList.products" :key="item.id">
           <li>{{ item.id }}</li>
@@ -23,6 +24,8 @@
 
 <script>
   import axios from 'axios';
+  import TopMenu from '../components/TopMenu.vue';
+
   export default {
     name: 'HomePage',
     data() {
@@ -30,7 +33,7 @@
         dataList: [], // Untuk menyimpan data dari API
         loading: true,
         stats: {},
-        loadingImage: require('../assets/logo.png')
+        loadingImage: require('../assets/gif/load-v1.gif')
       };
     },
     methods: { // Perbaikan penulisan methods
@@ -50,6 +53,9 @@
     created() {
       // Ganti URL_API dengan URL API yang sesuai
       this.getData(); // Panggil metode getData untuk mengambil data
+    },
+    components: {
+      TopMenu,
     }
   };
 </script>
@@ -57,7 +63,7 @@
 <style scoped lang="scss">
   /* Gaya khusus untuk komponen Home */
   .container {
-    background: #ebebeb;
+    // background: #ebebeb;
     min-height: 100vh;
   }
 
@@ -73,6 +79,10 @@
         text-align: left;
       }
     }
+  }
+
+  .load-data {
+    width: 50%;
   }
 </style> <!-- main -->
 

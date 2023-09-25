@@ -1,7 +1,8 @@
 <template>
   <div class="container">
+    <TopMenu></TopMenu>
     <div class="title">
-      <h1>Tentang Kami</h1>
+      <h1>Kontak Kami</h1>
       <p>Kami adalah perusahaan yang luar biasa.</p>
     </div>
     <!-- <div class="container">
@@ -11,15 +12,19 @@
 </template>
 
 <script>
-export default {
-  name: 'AboutPage'
-}
+  import TopMenu from '../../components/TopMenu.vue';
+  export default {
+    name: 'ContactPage',
+    components: {
+      TopMenu,
+    }
+  }
 </script>
 
 <style scoped lang="scss">
   /* Gaya khusus untuk komponen Home */
   .container {
-    background: #ebebeb;
+    // background: #ebebeb;
     min-height: 100vh;
   }
 

@@ -5,19 +5,28 @@ const loadView = (view) => {
 };
 
 export default [
-  { 
+  {
     path: '/',
+    redirect: { name: 'Login' }, // Tentukan halaman default di sini
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: loadView('Login/IndexPage'),
+  },
+  { 
+    path: '/dashboard',
     name: 'Beranda',
     component: loadView('Home'), 
   },
   { 
     path: '/about',
     name: 'About',
-    component: loadView('About'), 
+    component: loadView('Main/About'), 
   },
   { 
     path: '/contact',
-    name: 'Contact Us',
-    component: loadView('Contact'), 
+    name: 'ContactUs',
+    component: loadView('Main/Contact'), 
   },
 ];

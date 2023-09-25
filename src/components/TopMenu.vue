@@ -1,7 +1,7 @@
 <template>
   <div class="top-menu">
     <div class="menu-option">
-      <router-link to="/">Beranda</router-link>
+      <router-link to="/dashboard">Beranda</router-link>
     </div>
     <div class="menu-option">
       <router-link to="/about">Tentang</router-link>
