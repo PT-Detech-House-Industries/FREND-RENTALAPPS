@@ -27,7 +27,7 @@ export default {
     login() {
       // Implementasi logika autentikasi di sini
       // Contoh: Anda dapat melakukan validasi username dan password
-      if (this.username === 'pengguna' && this.password === 'katasandi') {
+      if (this.username === 'user' && this.password === '123') {
         // Berhasil login, arahkan pengguna ke halaman lain
         this.$router.push('/dashboard');
       } else {

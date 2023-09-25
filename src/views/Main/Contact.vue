@@ -5,6 +5,16 @@
       <h1>Kontak Kami</h1>
       <p>Kami adalah perusahaan yang luar biasa.</p>
     </div>
+    <div class="card">
+      <img class="load-data" :src="loadingImage" v-if="loading" />
+      <div class="list-data" v-else>
+      <!-- <div class="list-data"> -->
+        <ul v-for="item in data.products" :key="item.id">
+          <li>{{ item.description }}</li>
+          <li>{{ item.price }}</li>
+        </ul>
+      </div>
+    </div>
     <!-- <div class="container">
       <iframe src="https://iik.ac.id/?gclid=CjwKCAjwsKqoBhBPEiwALrrqiM_z8NgionUOCLdXMCMF8DV3CM9zxB1W2eizZvsvO9PZ7L3WrX9HHRoCc_YQAvD_BwE"></iframe>
     </div> -->
@@ -15,9 +25,36 @@
   import TopMenu from '../../components/TopMenu.vue';
   export default {
     name: 'ContactPage',
+    data() {
+      return {
+        dataList: [], // Untuk menyimpan data dari API
+        loading: true,
+        loadingImage: require('../../assets/gif/load-v1.gif')
+      };
+    },
+    methods: {
+      fetchData() {
+        // Panggil aksi fetchData dari store untuk mengambil data
+        this.$store.dispatch('fetchData');
+      },
+      async loadData() {
+        setTimeout(async () => {
+          this.loading = false;
+        },1500);
+      }
+    },
+    computed: {
+      data() {
+        return this.$store.state.data;
+      },
+    },
     components: {
       TopMenu,
-    }
+    },
+    created() {
+      this.fetchData(); // Panggil metode fetchData saat halaman dibuat
+      this.loadData();
+    },
   }
 </script>
 
@@ -32,16 +69,22 @@
     padding-top: 75px;
   }
 
-  .home {
-    h1 {
-      color: aqua;
-    }
+  .list-data {
+    ul {
+      list-style-type: none;
 
-    p {
-      color: red;
+      li {
+        text-align: left;
+      }
     }
   }
 
+  .load-data {
+    width: 50%;
+  }
+</style> <!-- main -->
+
+<style scoped lang="scss">
   /* Style untuk iframe agar tetap berukuran layar mobile */
   iframe {
     width: 100%;
@@ -61,4 +104,4 @@
     height: 100vh;
     /* Menggunakan tinggi 100% dari viewport */
   }
-</style>
+</style> <!-- iframe -->

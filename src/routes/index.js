@@ -16,7 +16,7 @@ export default [
   },
   { 
     path: '/dashboard',
-    name: 'Beranda',
+    name: 'Dashboard',
     component: loadView('Home'), 
   },
   { 

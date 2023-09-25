@@ -8,7 +8,8 @@
     <div class="card">
       <img class="load-data" :src="loadingImage" v-if="loading" />
       <div class="list-data" v-else>
-        <ul v-for="item in dataList.products" :key="item.id">
+      <!-- <div class="list-data"> -->
+        <ul v-for="item in data.products" :key="item.id">
           <li>{{ item.id }}</li>
           <li>{{ item.title }}</li>
           <li>{{ item.description }}</li>
@@ -23,40 +24,39 @@
 </template>
 
 <script>
-  import axios from 'axios';
   import TopMenu from '../components/TopMenu.vue';
-
   export default {
     name: 'HomePage',
     data() {
       return {
         dataList: [], // Untuk menyimpan data dari API
         loading: true,
-        stats: {},
         loadingImage: require('../assets/gif/load-v1.gif')
       };
     },
-    methods: { // Perbaikan penulisan methods
-      async getData() {
-        try {
-          // Menambahkan penundaan selama 2 detik (2000 milidetik)
-          setTimeout(async () => {
-            const response = await axios.get('https://dummyjson.com/products');
-            this.dataList = response.data; // Menyimpan data dari API ke variabel dataList
-            this.loading = false; // Set loading menjadi false setelah data diterima
-          }, 1500); // Penundaan selama 2 detik
-        } catch (error) {
-          console.error('Error:', error);
-        }
+    methods: {
+      fetchData() {
+        // Panggil aksi fetchData dari store untuk mengambil data
+        this.$store.dispatch('fetchData');
+      },
+      async loadData() {
+        setTimeout(async () => {
+          this.loading = false;
+        },1500);
       }
-    },
-    created() {
-      // Ganti URL_API dengan URL API yang sesuai
-      this.getData(); // Panggil metode getData untuk mengambil data
     },
     components: {
       TopMenu,
-    }
+    },
+    computed: {
+      data() {
+        return this.$store.state.data;
+      },
+    },
+    created() {
+      this.fetchData(); // Panggil metode fetchData saat halaman dibuat
+      this.loadData();
+    },
   };
 </script>
 
