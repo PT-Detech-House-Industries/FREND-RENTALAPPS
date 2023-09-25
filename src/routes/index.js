@@ -14,6 +14,11 @@ export default [
     name: 'Login',
     component: loadView('Login/IndexPage'),
   },
+  {
+    path: '/form',
+    name: 'Form',
+    component: loadView('Form/IndexPage'),
+  },
   { 
     path: '/dashboard',
     name: 'Dashboard',

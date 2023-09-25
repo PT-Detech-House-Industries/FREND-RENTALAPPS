@@ -55,6 +55,9 @@
       this.fetchData(); // Panggil metode fetchData saat halaman dibuat
       this.loadData();
     },
+    mounted() {
+      document.title = 'about - nihonuwu'
+    },
   }
 </script>
 

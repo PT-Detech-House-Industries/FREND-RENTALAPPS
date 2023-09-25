@@ -1,49 +1,61 @@
 <template>
+  <!-- <div class="form-container">
+    <h1>Form Contoh</h1>
+    <form @submit.prevent="submitForm">
+      <div class="form-group">
+        <label for="name">Nama:</label>
+        <input type="text" id="name" v-model="formData.name" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" v-model="formData.email" required>
+      </div>
+      <div class="form-group">
+        <label for="message">Pesan:</label>
+        <textarea id="message" v-model="formData.message" rows="4" required></textarea>
+      </div>
+      <div class="form-group">
+        <button type="submit">Kirim</button>
+      </div>
+    </form>
+  </div> -->
   <div class="form-content">
-    <TopBorder></TopBorder>
-    <h1>Login</h1>
-    <form @submit.prevent="login">
-      <label for="fname">Username</label>
-      <input v-model="username" type="text" id="username" placeholder=" Username..">
+    <form action="/action_page.php">
+      <label for="fname">First Name</label>
+      <input type="text" id="fname" name="firstname" placeholder="Your name..">
 
-      <label for="lname">Password</label>
-      <input v-model="password" type="password" id="password" placeholder="Password..">
+      <label for="lname">Last Name</label>
+      <input type="text" id="lname" name="lastname" placeholder="Your last name..">
 
-      <input class="submit" type="submit" value="Submit">
+      <label for="country">Country</label>
+      <select id="country" name="country">
+        <option value="australia">Australia</option>
+        <option value="canada">Canada</option>
+        <option value="usa">USA</option>
+      </select>
+
+      <input type="submit" value="Submit">
     </form>
   </div>
 </template>
 
 <script>
-  import TopBorder from '../../components/TopBorder.vue';
-  
   export default {
     data() {
       return {
-        pageTitle: 'login page - nihonuwu.com',
-        username: '',
-        password: '',
+        formData: {
+          name: '',
+          email: '',
+          message: '',
+        },
       };
     },
     methods: {
-      login() {
-        // Implementasi logika autentikasi di sini
-        // Contoh: Anda dapat melakukan validasi username dan password
-        if (this.username === 'user' && this.password === '123') {
-          // Berhasil login, arahkan pengguna ke halaman lain
-          this.$router.push('/dashboard');
-        } else {
-          alert('Login gagal. Periksa kembali username dan password Anda.');
-        }
+      submitForm() {
+        // Mengirim data formulir, Anda dapat menambahkan logika pengiriman di sini
+        console.log(this.formData);
       },
     },
-    components: {
-      // HelloWorld
-      TopBorder,
-    },
-    mounted() {
-      document.title = 'login - nihonuwu'
-    }
   };
 </script>
 
@@ -61,12 +73,11 @@
   form {
     // background-color: #f9f9f9;
     padding: 18px;
-    background-color: #FFFFFF;
+    background-color: #f2f2f2;
     border-radius: 20px;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   }
 
-  input[type=text],input[type=password],
+  input[type=text],
   select {
     width: 100%;
     padding: 12px 20px;
@@ -83,8 +94,6 @@
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
-    margin-top: 19px;
-    margin-bottom: 2px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
