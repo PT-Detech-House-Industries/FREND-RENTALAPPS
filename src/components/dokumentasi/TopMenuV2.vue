@@ -3,7 +3,8 @@
     <router-link to="/">
       <img src="../assets/png/logo.png" alt="Logo" class="logo">
     </router-link>
-    <div class="kanan">
+    <button class="kanan" @click="toggleElement">Toggle Element</button>
+    <div id="myElement" class="merah" :class="{ 'active': isActive }">
       <div class="menu-option">
         <router-link to="/dashboard">Beranda</router-link>
       </div>
@@ -18,6 +19,7 @@
 </template>
 
 <script>
+import $ from 'jquery';
 
 export default {
   data() {
@@ -26,7 +28,24 @@ export default {
     };
   },
   methods: {
-    
+    // add function
+    toggleElement() {
+      this.isActive = !this.isActive; //true
+    },
+  },
+  mounted() {
+    // Memanipulasi elemen dengan jQuery saat komponen di-mount
+    $('#myElement').addClass('active');
+
+    $(document).ready(function() {
+      $("p").click(function() {
+        $(this).fadeOut();
+      });
+    }); // untuk memanipulasi elemen p, menghilang
+  },
+  beforeDestroy() {
+    // Membersihkan event-handler atau elemen yang dimanipulasi dengan jQuery
+    $('#myElement').off(); // Hapus event-handler jika ada
   },
 };
 </script>
@@ -35,11 +54,10 @@ export default {
   @import '@/scss/_theme.scss';
 
   .logo {
-    width: 35px;
+    width: 50px;
     /* Sesuaikan ukuran logo */
     height: auto;
     float: left;
-    margin-left: 15px;
   }
 
   .top-menu {
@@ -70,10 +88,9 @@ export default {
 
   /* Gaya untuk pilihan menu */
   .menu-option {
-    font-size: 18px;
+    font-size: 12px;
     /* Ukuran font 24px */
-    padding: 6px 4px;
-    margin-left: 10px;
+    padding: 2px 4px;
     /* Sesuaikan dengan gaya Anda */
     cursor: pointer;
     /* Menambahkan tanda kursor saat dihover */
@@ -99,5 +116,12 @@ export default {
 <style>
 .kanan {
   float: right;
+}
+
+.active {
+  background-color: red;
+  padding: 10px;
+  width: auto;
+  transition: background-color 0.3s ease, padding 0.3s ease;
 }
 </style><!-- untuk active -->

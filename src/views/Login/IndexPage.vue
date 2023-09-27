@@ -3,11 +3,11 @@
     <TopBorder></TopBorder>
     <h1>Login</h1>
     <form @submit.prevent="login">
-      <label for="fname">Username</label>
-      <input v-model="username" type="text" id="username" placeholder=" Username..">
+      <label>Username</label>
+      <input class="login-form" v-model="username" type="text" id="username" placeholder=" Username..">
 
-      <label for="lname">Password</label>
-      <input v-model="password" type="password" id="password" placeholder="Password..">
+      <label>Password</label>
+      <input class="login-form" v-model="password" type="password" id="password" placeholder="Password..">
 
       <input class="submit" type="submit" value="Submit">
     </form>
@@ -48,6 +48,8 @@
 </script>
 
 <style lang="scss" scoped>
+  @import '@/scss/_form.scss';
+  
   .form-content {
     max-width: 400px;
     // border: 1px solid #ccc;
@@ -66,86 +68,7 @@
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   }
 
-  input[type=text],input[type=password],
-  select {
-    width: 100%;
-    padding: 12px 20px;
+  .login-form {
     margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
   }
-
-  input[type=submit] {
-    width: 100%;
-    background-color: #4CAF50;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    margin-top: 19px;
-    margin-bottom: 2px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-
-  input[type=submit]:hover {
-    background-color: #45a049;
-  }
-
-  // div {
-  //   border-radius: 5px;
-  //   background-color: #f2f2f2;
-  //   padding: 20px;
-  // }
 </style><!-- form version 1.1 -->
-
-<style lang="scss" scoped>
-  .form-container {
-    /* max-width: 400px; */
-    /* margin: 0 auto; */
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-    margin: 0 auto;
-    padding: 20px;
-  }
-
-  .form-group {
-    margin-bottom: 15px;
-    float: left;
-  }
-
-  // label {
-  //   display: block;
-  //   margin-bottom: 5px;
-  //   font-weight: bold;
-  // }
-
-  h1 {
-    text-align: center;
-  }
-
-  input[type="text"],
-  input[type="email"],
-  textarea {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-
-  button {
-    background-color: #3498db;
-    color: #fff;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: bold;
-  }
-
-  button:hover {
-    background-color: #2980b9;
-  }
-</style> <!-- form version 1 -->
