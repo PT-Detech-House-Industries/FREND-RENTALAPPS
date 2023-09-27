@@ -7,6 +7,10 @@ const mutations = {
   SET_DATA(state, newData) {
     state.data = newData;
   },
+
+  AboutDashboard(state, AboutDashboard) {
+    state.AboutDashboard = AboutDashboard;
+  }
 };
 
 export default mutations;

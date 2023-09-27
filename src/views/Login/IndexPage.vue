@@ -15,6 +15,7 @@
 </template>
 
 <script>
+  import axios from 'axios';
   import TopBorder from '../../components/TopBorder.vue';
   
   export default {
@@ -34,6 +35,24 @@
           this.$router.push('/dashboard');
         } else {
           alert('Login gagal. Periksa kembali username dan password Anda.');
+        }
+      },
+
+      async logins() {
+        try {
+          await axios.post('http://localhost:8000/api/login', {
+            username: this.username,
+            password: this.password,
+          });
+
+          // Handle response data here, such as storing tokens or redirecting.
+          this.$router.push('/dashboard');
+        } catch (error) {
+          // Handle errors here, such as displaying an error message.
+          console.error('Login failed:', error);
+
+          // Display error message to the user
+          this.errorMessage = 'Login failed. Please check your credentials.';
         }
       },
     },

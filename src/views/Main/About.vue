@@ -9,6 +9,9 @@
       <img class="load-data" :src="loadingImage" v-if="loading" />
       <div class="list-data" v-else>
       <!-- <div class="list-data"> -->
+        <ul v-for="data in AboutDashboard.data" :key="data.id">
+          <li>{{ data.id }}</li>
+        </ul>
         <ul v-for="item in data.products" :key="item.id">
           <li>{{ item.id }}</li>
           <li>{{ item.title }}</li>
@@ -41,7 +44,11 @@
         setTimeout(async () => {
           this.loading = false;
         },1500);
-      }
+      },
+      fetchAbout() {
+        // Panggil aksi fetchData dari store untuk mengambil data
+        this.$store.dispatch('fetchAbout');
+      },
     },
     components: {
       TopMenu,
@@ -50,10 +57,15 @@
       data() {
         return this.$store.state.data;
       },
+
+      AboutDashboard() {
+        return this.$store.state.AboutDashboard;
+      },
     },
     created() {
       this.fetchData(); // Panggil metode fetchData saat halaman dibuat
       this.loadData();
+      this.fetchAbout();
     },
     mounted() {
       document.title = 'about - nihonuwu'
