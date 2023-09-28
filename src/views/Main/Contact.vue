@@ -5,6 +5,9 @@
       <h1>Kontak Kami</h1>
       <p>Kami adalah perusahaan yang luar biasa.</p>
     </div>
+    <ul v-for="item in dataTalent.data" :key="item.id">
+      <li>{{ item.id }}</li>
+    </ul>
     <div class="card">
       <img class="load-data" :src="loadingImage" v-if="loading" />
       <div class="list-data" v-else>
@@ -23,13 +26,16 @@
 
 <script>
   import TopMenu from '../../components/TopMenu.vue';
+  import axios from 'axios';
+
   export default {
     name: 'ContactPage',
     data() {
       return {
         dataList: [], // Untuk menyimpan data dari API
         loading: true,
-        loadingImage: require('../../assets/gif/load-v1.gif')
+        loadingImage: require('../../assets/gif/load-v1.gif'),
+        dataTalent: [],
       };
     },
     methods: {
@@ -41,7 +47,16 @@
         setTimeout(async () => {
           this.loading = false;
         },1500);
-      }
+      },
+      fetchTalent() {
+        axios.get('http://localhost:8000/api/service-talent/')
+          .then(response => {
+            this.dataTalent = response.data; // Memasukkan data ke dalam data komponen
+          })
+          .catch(error => {
+            console.error('Error fetching data:', error);
+          });
+      },
     },
     computed: {
       data() {
@@ -54,6 +69,7 @@
     created() {
       this.fetchData(); // Panggil metode fetchData saat halaman dibuat
       this.loadData();
+      this.fetchTalent();
     },
     mounted() {
       document.title = 'contact - nihonuwu'

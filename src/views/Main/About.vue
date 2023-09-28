@@ -5,19 +5,27 @@
       <h1>Tentang Kami</h1>
       <p>Kami adalah perusahaan yang luar biasa.</p>
     </div>
-    <div class="card">
-      <img class="load-data" :src="loadingImage" v-if="loading" />
-      <div class="list-data" v-else>
-      <!-- <div class="list-data"> -->
-        <ul v-for="data in AboutDashboard.data" :key="data.id">
-          <li>{{ data.id }}</li>
-        </ul>
-        <ul v-for="item in data.products" :key="item.id">
-          <li>{{ item.id }}</li>
-          <li>{{ item.title }}</li>
-        </ul>
-      </div>
-    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Harga</th>
+          <th>Nama</th>
+          <th>Durasi</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="data in AboutDashboard.data" :key="data.id">
+          <td>{{ data.id }}</td>
+          <td>{{ data.nickname }}</td>
+          <td>{{ data.id }}</td>
+        </tr>
+
+        <tr v-for="data in ServiceTalent.data" :key="data.id">
+          <td>{{ data.id }}</td>
+          <td>{{ data.code }}</td>
+        </tr>
+      </tbody>
+    </table>
     <!-- <div class="container">
       <iframe src="https://iik.ac.id/?gclid=CjwKCAjwsKqoBhBPEiwALrrqiM_z8NgionUOCLdXMCMF8DV3CM9zxB1W2eizZvsvO9PZ7L3WrX9HHRoCc_YQAvD_BwE"></iframe>
     </div> -->
@@ -26,6 +34,7 @@
 
 <script>
   import TopMenu from '../../components/TopMenu.vue';
+  import { mapActions } from 'vuex';
   export default {
     name: 'AboutPage',
     data() {
@@ -36,6 +45,14 @@
       };
     },
     methods: {
+      ...mapActions(['fetchData', 'fetchAbout', 'fetchAbout1']),
+      
+      async fetchDataAndAbout() {
+        await this.fetchData();
+        await this.fetchAbout();
+        await this.fetchAbout1();
+      },
+      
       fetchData() {
         // Panggil aksi fetchData dari store untuk mengambil data
         this.$store.dispatch('fetchData');
@@ -43,12 +60,12 @@
       async loadData() {
         setTimeout(async () => {
           this.loading = false;
-        },1500);
+        }, 1500);
       },
-      fetchAbout() {
-        // Panggil aksi fetchData dari store untuk mengambil data
-        this.$store.dispatch('fetchAbout');
-      },
+      // fetchAbout() {
+      //   // Panggil aksi fetchData dari store untuk mengambil data
+      //   this.$store.dispatch('fetchAbout');
+      // },
     },
     components: {
       TopMenu,
@@ -57,15 +74,20 @@
       data() {
         return this.$store.state.data;
       },
-
       AboutDashboard() {
-        return this.$store.state.AboutDashboard;
+        return this.$store.state.ProfileAccount;
+      },
+      ServiceTalent() {
+        return this.$store.state.ServiceTalent;
       },
     },
     created() {
       this.fetchData(); // Panggil metode fetchData saat halaman dibuat
       this.loadData();
       this.fetchAbout();
+      this.fetchAbout1();
+      // this.fetchService();
+      // this.fetchTalent();
     },
     mounted() {
       document.title = 'about - nihonuwu'

@@ -10,6 +10,11 @@ export default [
     redirect: { name: 'Login' }, // Tentukan halaman default di sini
   },
   {
+    path: '/service-talent',
+    name: 'ServiceTalentPage',
+    component: loadView('ServiceTalent/IndexPage'),
+  },
+  {
     path: '/login',
     name: 'Login',
     component: loadView('Login/IndexPage'),
