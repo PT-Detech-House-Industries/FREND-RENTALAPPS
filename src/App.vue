@@ -33,7 +33,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; */
     font-family: 'PlusJakartaSans', sans-serif;
-    background-color: #F7F7F8;
+    // background-color: #F7F7F8;
     color: #2c3e50;
     max-width: 480px;
     min-height: 100vh;

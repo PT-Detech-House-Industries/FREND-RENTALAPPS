@@ -1,6 +1,7 @@
 <template>
   <div class="bottom-menu">
-    <div class="manu-option">app.nihonuwu.com</div>
+    <div class="manu-option"></div>
+    <!-- <div class="manu-option">app.nihonuwu.com</div> -->
     <!-- <div class="menu-option">
       <router-link to="/">Beranda</router-link>
     </div>
